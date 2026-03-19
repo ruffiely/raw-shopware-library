@@ -1,13 +1,10 @@
 {
-  "name": "raw/shopware-library",
+  "name": "ruffiely/shopware-library",
   "type": "library",
   "description": "Resueable shopware utilities",
   "autoload": {
     "psr-4": {
       "Raw\\ShopwareLibrary\\": "src/"
     }
-  },
-  "require": {
-    "shopware/core": "~6.7.0"
   }
 }
