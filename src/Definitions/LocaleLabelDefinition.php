@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace RawShopwareLibrary\Definitions;
+namespace Raw\ShopwareLibrary\Definitions;
 
 class LocaleLabelDefinition
 {
-    private string $key;
-
-    private string $translation;
+    public function __construct(
+        private readonly string $key,private readonly string $translation
+    ) {}
 
     public function getKey(): string
     {

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace RawShopwareLibrary\Definitions;
+namespace Raw\ShopwareLibrary\Definitions;
 
 class CustomFieldSetFieldsDefinition
 {
@@ -8,9 +8,9 @@ class CustomFieldSetFieldsDefinition
 
     private string $type;
 
-    private bool $allowCustomerWrite;
+    private bool $allowCustomerWrite = false;
 
-    private bool $storeApiAware;
+    private bool $storeApiAware = false;
 
     private ?string $customFieldSetId = null;
 
@@ -36,5 +36,23 @@ class CustomFieldSetFieldsDefinition
             'config' => $this->config->toArray(),
             'customFieldSetId' => $this->customFieldSetId,
         ];
+    }
+
+    public static function fromArray(array $config): CustomFieldSetFieldsDefinition
+    {
+        CustomFieldSetDefinition::assertRequired($config, ['name', 'type', 'config']);
+
+        $newSelf = new self();
+        $newSelf->name = $config['name'];
+        $newSelf->type = $config['type'];
+        if (isset($config['allowCustomerWrite'])) {
+            $newSelf->allowCustomerWrite = $config['allowCustomerWrite'];
+        }
+        if (isset($config['storeApiAware'])) {
+            $newSelf->storeApiAware = $config['storeApiAware'];
+        }
+        $newSelf->config = CustomFieldSetFieldsConfigDefinition::fromArray($config['config']);
+
+        return $newSelf;
     }
 }

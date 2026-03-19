@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace RawShopwareLibrary;
+namespace Raw\ShopwareLibrary;
 
-use RawShopwareLibrary\Definitions\CustomFieldSetDefinition;
+use Raw\ShopwareLibrary\Definitions\CustomFieldSetDefinition;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;

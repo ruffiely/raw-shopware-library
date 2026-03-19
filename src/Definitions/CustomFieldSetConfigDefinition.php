@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace RawShopwareLibrary\Definitions;
+namespace Raw\ShopwareLibrary\Definitions;
 
 class CustomFieldSetConfigDefinition
 {
@@ -17,6 +17,24 @@ class CustomFieldSetConfigDefinition
             $array[$labelDefinition->getKey()] = $labelDefinition->getTranslation();
         }
 
-        return $array;
+        return ['label' => $array];
+    }
+
+    /**
+     * @param array $config
+     * @return CustomFieldSetConfigDefinition
+     */
+    public static function fromArray(array $config): CustomFieldSetConfigDefinition
+    {
+        CustomFieldSetDefinition::assertRequired($config, ['label']);
+
+        $newSelf = new self();
+        $translations = [];
+        foreach ($config['label'] as $key => $value) {
+            $translations[] = new LocaleLabelDefinition($key, $value);
+        }
+        $newSelf->label = $translations;
+
+        return $newSelf;
     }
 }
