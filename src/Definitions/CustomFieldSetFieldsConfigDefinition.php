@@ -83,7 +83,7 @@ class CustomFieldSetFieldsConfigDefinition
             $newSelf->customFieldType = $config['customFieldType'];
         }
 
-        return $newSelf->fromArray($config);
+        return $newSelf;
     }
 
 
