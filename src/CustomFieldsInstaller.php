@@ -53,7 +53,7 @@ class CustomFieldsInstaller
                     $context,
                     $customFieldSetRepository,
                     $customFieldSetRelationRepository,
-                    $customFieldSetDefinition->getName(),
+                    $customFieldSetDefinition,
                     $relation
                 );
             }
