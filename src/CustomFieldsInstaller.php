@@ -115,7 +115,7 @@ class CustomFieldsInstaller
         $criteria->addFilter(new EqualsFilter('customFieldSetId', $customFieldSetId));
 
         $ids = $customFieldSetRelationRepository->searchIds($criteria, $context)->getIds();
-        $customFieldSetRelationRepository->delete($ids, $context);
+        $customFieldSetRelationRepository->delete(array_map(fn ($id) => ['id' => $id], $ids), $context);
     }
 
     private function addRelation(
