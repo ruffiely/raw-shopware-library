@@ -168,12 +168,22 @@ class CustomFieldsInstaller
             // check if custom field already exists
             if (isset($existingCustomFieldIds[$customFieldSetFieldDefinition->getName()])) {
                 $data['id'] = $existingCustomFieldIds[$customFieldSetFieldDefinition->getName()];
+                unset($existingCustomFieldIds[$customFieldSetFieldDefinition->getName()]);
             }
 
             $upsertFields[] = $data;
         }
 
         $customFieldRepository->upsert($upsertFields, $context);
+
+        if (count($existingCustomFieldIds) > 0 ) {
+            $customFieldRepository->delete(
+                array_map(
+                    fn($id) => ['id' => $id],
+                    $existingCustomFieldIds
+                ), $context
+            );
+        }
     }
 
     private function installFieldset(
