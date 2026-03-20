@@ -70,7 +70,7 @@ class CustomFieldsInstaller
         // Remove relations
         foreach ($customFieldSetDefinitions as $customFieldSetDefinition) {
             foreach ($customFieldSetDefinition->getRelations() as $relation) {
-                $this->removeRelation($context, $customFieldSetRepository, $customFieldSetRelationRepository, $relation);
+                $this->removeRelation($context, $customFieldSetRepository, $customFieldSetRelationRepository, $customFieldSetDefinition);
             }
         }
     }
