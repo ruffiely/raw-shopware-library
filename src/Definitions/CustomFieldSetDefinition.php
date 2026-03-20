@@ -70,7 +70,7 @@ class CustomFieldSetDefinition
         foreach ($config['customFields'] as $customField) {
             $customFields = CustomFieldSetFieldsDefinition::fromArray($customField);
         }
-        $newSelf->customFields = $customFields;
+        $newSelf->customFieldSetFieldsDefinition = $customFields;
 
         return $newSelf;
     }
