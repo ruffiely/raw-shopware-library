@@ -70,7 +70,7 @@ class CustomFieldsInstaller
         // Remove relations
         foreach ($customFieldSetDefinitions as $customFieldSetDefinition) {
             foreach ($customFieldSetDefinition->getRelations() as $relation) {
-                $this->removeRelation();
+                $this->removeRelation($context, $customFieldSetRepository, $customFieldSetRelationRepository, $relation);
             }
         }
     }
@@ -177,12 +177,11 @@ class CustomFieldsInstaller
         $customFieldRepository->upsert($upsertFields, $context);
 
         if (count($existingCustomFieldIds) > 0 ) {
-            $customFieldRepository->delete(
-                array_map(
-                    fn($id) => ['id' => $id],
-                    $existingCustomFieldIds
-                ), $context
+            $ids = array_map(
+                fn($id) => ['id' => $id],
+                array_values($existingCustomFieldIds)
             );
+            $customFieldRepository->delete($ids, $context);
         }
     }
 
