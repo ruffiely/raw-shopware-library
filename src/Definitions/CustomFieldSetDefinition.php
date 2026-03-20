@@ -68,7 +68,7 @@ class CustomFieldSetDefinition
 
         $customFields = [];
         foreach ($config['customFields'] as $customField) {
-            $customFields = CustomFieldSetFieldsDefinition::fromArray($customField);
+            $customFields[] = CustomFieldSetFieldsDefinition::fromArray($customField);
         }
         $newSelf->customFieldSetFieldsDefinition = $customFields;
 
